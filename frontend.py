@@ -422,17 +422,23 @@ def render_dataset_card(ds: dict) -> str:
       <span style="font-size:11px;color:#94a3b8;font-weight:600;letter-spacing:.05em;">
         {ds["id"].upper()}
       </span>
-      <h3 style="margin:4px 0 6px;font-size:18px;color:#0f172a;">{ds["name"]}</h3>
+      <h3 style="margin:4px 0 6px;font-size:18px;color:#0f172a;">
+        <a href="https://collibra.com/{ds['id']}" target="_blank"
+           style="color:#0f172a;text-decoration:none;border-bottom:1px solid #cbd5e1;"
+           onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#0f172a'">
+          {ds["name"]}
+        </a>
+      </h3>
     </div>
     {score_badge(ds["score"])}
   </div>
   <p style="color:#475569;font-size:14px;margin:0 0 12px;line-height:1.6;">{ds["description"]}</p>
   <div style="margin-bottom:12px;">{tags_html}</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:8px;">
     {"".join(
-        f'<div style="background:#f8fafc;border-radius:8px;padding:8px 12px;">'
+        f'<div style="background:#f8fafc;border-radius:8px;padding:8px 12px;min-width:0;">'
         f'<div style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">{k}</div>'
-        f'<div style="font-size:13px;color:#1e293b;font-weight:500;margin-top:2px;">{v}</div>'
+        f'<div style="font-size:13px;color:#1e293b;font-weight:500;margin-top:2px;word-break:break-word;overflow-wrap:anywhere;">{v}</div>'
         f'</div>'
         for k, v in [
             ("Format", ds["format"]),

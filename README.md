@@ -26,7 +26,7 @@ Searches across dataset-level documents in the ES `datasets` index. Each documen
 | Field | Description |
 |-------|-------------|
 | `id` | Unique dataset identifier |
-| `name` | Human-readable dataset name |
+| `name` | Human-readable dataset name — rendered as a clickable link to `https://collibra.com/{id}` |
 | `description` | Free-text description |
 | `tags` | List of topic/domain tags |
 | `format` | Storage format (CSV, Parquet, NetCDF, …) |
@@ -37,7 +37,7 @@ Searches across dataset-level documents in the ES `datasets` index. Each documen
 | `source` | Originating organisation or system |
 | `score` | Elasticsearch relevance score (0–1) |
 
-The query runs a `multi_match` across `name`, `description`, and `tags`, returning results ranked by relevance.
+The query runs a `multi_match` across `name`, `description`, and `tags`, returning results ranked by relevance. The metadata grid uses a flexible auto-fill layout so long field values wrap within their cells rather than overflowing.
 
 ---
 
