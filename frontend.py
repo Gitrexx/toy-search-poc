@@ -10,6 +10,7 @@ MOCK_DATASETS = [
     {
         "asset_id": "ds-001",
         "dataset_name": "Global Climate Observations 2020-2024",
+        "description": "High-resolution climate measurements from 5,000+ weather stations worldwide, including temperature, precipitation, humidity, and wind data.",
         "country": "USA",
         "application_layer": "Analytics",
         "structure_type": "Structured",
@@ -20,6 +21,7 @@ MOCK_DATASETS = [
     {
         "asset_id": "ds-002",
         "dataset_name": "Urban Air Quality Index",
+        "description": "Daily AQI readings for 300 major cities covering PM2.5, PM10, NO2, SO2, CO, and O3 levels since 2015.",
         "country": "Multi-country",
         "application_layer": "Reporting",
         "structure_type": "Structured",
@@ -30,6 +32,7 @@ MOCK_DATASETS = [
     {
         "asset_id": "ds-003",
         "dataset_name": "Ocean Temperature & Salinity (Argo Float)",
+        "description": "Depth profiles of temperature and salinity from 4,000 Argo floats deployed across the global ocean.",
         "country": "International",
         "application_layer": "Data Lake",
         "structure_type": "Semi-structured",
@@ -40,7 +43,8 @@ MOCK_DATASETS = [
     {
         "asset_id": "ds-004",
         "dataset_name": "Global Forest Cover Change 2000-2023",
-        "country": "International laksjflkajsdlfkjalskjfasdkfjhaksjdfhkasjdfhkajsfhksadjfhksajdfhkajsdfhkasjdfhksfhkasjdfhkajsdfhksdjf",
+        "description": "Annual land-cover classification and forest-loss / gain layers derived from Landsat imagery at 30 m resolution.",
+        "country": "International",
         "application_layer": "Data Lake",
         "structure_type": "Unstructured",
         "domain": "Environmental Science",
@@ -50,6 +54,7 @@ MOCK_DATASETS = [
     {
         "asset_id": "ds-005",
         "dataset_name": "Global Earthquake Catalog (USGS)",
+        "description": "Seismic event records since 1900 including magnitude, depth, location, and focal mechanism data.",
         "country": "USA",
         "application_layer": "Analytics",
         "structure_type": "Structured",
@@ -69,9 +74,10 @@ def mock_dataset_search(query: str) -> list[dict]:
         ds for ds in MOCK_DATASETS
         if any(
             w in (
-                ds["dataset_name"] + " " + ds["domain"] + " "
-                + ds["country"] + " " + ds["application_layer"] + " "
-                + ds["structure_type"] + " " + " ".join(ds["partitioned_by"])
+                ds["dataset_name"] + " " + ds["description"] + " "
+                + ds["domain"] + " " + ds["country"] + " "
+                + ds["application_layer"] + " " + ds["structure_type"] + " "
+                + " ".join(ds["partitioned_by"])
             ).lower()
             for w in words
         )
@@ -287,6 +293,7 @@ def render_dataset_card(ds: dict) -> str:
     </div>
     {score_badge(ds["score"])}
   </div>
+  <p style="color:#475569;font-size:16px;margin:12px 0 16px;line-height:1.7;">{ds["description"]}</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,100%),1fr));gap:8px;margin-bottom:12px;">
     {"".join(
         f'<div style="background:#f8fafc;border-radius:8px;padding:8px 12px;min-width:0;">'

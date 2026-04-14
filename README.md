@@ -27,6 +27,7 @@ Searches across dataset-level documents in the ES `datasets` index. Each documen
 |-------|-------------|
 | `asset_id` | Unique dataset identifier — rendered as a clickable link to `https://collibra.com/{asset_id}` |
 | `dataset_name` | Human-readable dataset name |
+| `description` | Free-text description of the dataset content |
 | `country` | Country or region where the dataset originates |
 | `application_layer` | Layer in the data platform (e.g. Analytics, Data Lake, Reporting) |
 | `structure_type` | Data structure type (Structured, Semi-structured, Unstructured) |
